@@ -22,7 +22,7 @@ jobs:
         if: ${{ matrix.os == 'windows-latest' }}
       - run: ./program.kexe
         if: ${{ matrix.os != 'windows-latest' }}
-      - run: kotlin Pyramid.kts
+      - run: kotlin Pyramid.kt
 
       - uses: fwilhe2/setup-kotlin@main
         name: Do stuff with Kotlin scripting
