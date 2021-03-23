@@ -3,7 +3,7 @@ on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: "1 1 * * 1"
+    - cron: "2, 4  * * 1"
 jobs:
   build:
     runs-on: ${{ matrix.os }}
@@ -15,14 +15,14 @@ jobs:
       - uses: fwilhe2/setup-kotlin@main
         with:
           install-native: true
-      - run: kotlinc foo.kt -include-runtime -d hello.jar; java -jar hello.jar
+      - run: kotlinc Pyramid.kt -include-runtime -d hello.jar; java -jar hello.jar
 
-      - run: kotlinc-native foo.kt
+      - run: kotlinc-native Pyramid.kt
       - run: ./program.exe
         if: ${{ matrix.os == 'windows-latest' }}
       - run: ./program.kexe
         if: ${{ matrix.os != 'windows-latest' }}
-      - run: kotlin foo.main.kts
+      - run: kotlin Pyramid.kts
 
       - uses: fwilhe2/setup-kotlin@main
         name: Do stuff with Kotlin scripting
